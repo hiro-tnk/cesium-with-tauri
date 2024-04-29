@@ -10,7 +10,9 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1"
+    "@tauri-apps/api": "^1",
+    "cesium": "^1.116.0",
+    "vite-plugin-cesium": "^1.2.22"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",

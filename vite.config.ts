@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import cesium from 'vite-plugin-cesium';
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
@@ -16,4 +17,7 @@ export default defineConfig(async () => ({
       ignored: ["**/src-tauri/**"],
     },
   },
+  plugins: [
+    cesium(),
+  ],
 }));
