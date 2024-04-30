@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 (async function() {
   "use strict";
-  Cesium.Ion.defaultAccessToken = '';
+  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg5MmViYWQiLCJpZCI6ODAzMDYsImlhdCI6MTY0Mjc0ODI2MX0.dkwAL1CcljUV7NA7fDbhXXnmyZQU_c-G5zRx8PtEcxE';
 
   // alomost of following code is from https://gist.github.com/banesullivan/e3cc15a3e2e865d5ab8bae6719733752
 
@@ -194,6 +194,8 @@ window.addEventListener("DOMContentLoaded", () => {
     geocoder: false,
     infoBox: false,
     // creditContainer: document.createElement("none"),
+    // This Terrian Data comes from PLATEAU-Terrain https://github.com/Project-PLATEAU/plateau-streaming-tutorial/blob/main/terrain/plateau-terrain-streaming.md
+    terrainProvider: await Cesium.CesiumTerrainProvider.fromIonAssetId(770371)
   });
 
   var my_3d_tiles = [];
