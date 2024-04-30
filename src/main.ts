@@ -153,6 +153,34 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }));
 
+  imageryViewModels.push(new Cesium.ProviderViewModel({
+    name: 'GSI Tile (Japan)',
+    tooltip: 'GSI Tile',
+    iconUrl: 'https://cyberjapandata.gsi.go.jp/xyz/std/2/3/1.png',
+    creationFunction: function(){
+      return new Cesium.UrlTemplateImageryProvider({
+        url: 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
+        credit: 'Tile data from <a href="https://maps.gsi.go.jp/development/ichiran.html">GSI in Japan</a>',
+        minimumLevel: 0,
+        maximumLevel: 16
+      });
+    }
+  }),)
+
+  imageryViewModels.push(new Cesium.ProviderViewModel({
+    name: '20万分の1日本シームレス地質図V2',
+    tooltip: '20万分の1日本シームレス地質図V2',
+    iconUrl: 'https:/gbank.gsj.jp/seamless/v2/api/1.3.1/tiles/11/777/1827.png',
+    creationFunction: function(){
+      return new Cesium.UrlTemplateImageryProvider({
+        url: 'https://gbank.gsj.jp/seamless/v2/api/1.3.1/tiles/{z}/{y}/{x}.png?type=level4',
+        credit: 'Tile data from <a href="https://gbank.gsj.jp/seamless/v2/api/1.3.1/">GSJ, AIST</a>',
+        minimumLevel: 0,
+        maximumLevel: 16
+      });
+    }
+  }),)
+
   var _viewer = new Cesium.Viewer("cesium", {
     imageryProviderViewModels: imageryViewModels,
     terrainProviderViewModels: [],
