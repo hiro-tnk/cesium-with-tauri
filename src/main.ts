@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-(function() {
+(async function() {
   "use strict";
   Cesium.Ion.defaultAccessToken = '';
 
@@ -186,7 +186,7 @@ window.addEventListener("DOMContentLoaded", () => {
   Cesium.Camera.DEFAULT_VIEW_RECTANGLE = defaultExtent;
   Cesium.Camera.DEFAULT_VIEW_FACTOR = 1;
 
-  var _viewer = new Cesium.Viewer("cesium", {
+  var viewer = new Cesium.Viewer("cesium", {
     imageryProviderViewModels: imageryViewModels,
     terrainProviderViewModels: [],
     selectedImageryProviderViewModel: imageryViewModels[0],
@@ -195,5 +195,25 @@ window.addEventListener("DOMContentLoaded", () => {
     infoBox: false,
     // creditContainer: document.createElement("none"),
   });
+
+  var my_3d_tiles = [];
+  var urls_of_3d_tiles = [
+    // 千代田区の建物データ
+    'https://assets.cms.plateau.reearth.io/assets/97/0b3db1-d1d5-441a-8aa0-6d6d63361e20/13100_tokyo23-ku_2022_3dtiles_1_1_op_bldg_13101_chiyoda-ku_lod2/tileset.json',
+    // 港区の建物データ
+    'https://assets.cms.plateau.reearth.io/assets/83/fc7c3b-0044-4b20-8e12-9771d3a2821e/13100_tokyo23-ku_2022_3dtiles_1_1_op_bldg_13103_minato-ku_lod2/tileset.json',
+    // 23区の橋梁データ
+    'https://assets.cms.plateau.reearth.io/assets/97/0b3db1-d1d5-441a-8aa0-6d6d63361e20/13100_tokyo23-ku_2022_3dtiles_1_1_op_bldg_13101_chiyoda-ku_lod2/tileset.json',
+    // 23区の都市設備データ
+    'https://assets.cms.plateau.reearth.io/assets/db/d9dd35-96e9-4a12-9bb0-7dc50269c454/13100_tokyo23-ku_2022_3dtiles_1_1_op_brid/tileset.json',
+    // 盛岡市の建物データ
+    'https://assets.cms.plateau.reearth.io/assets/67/52bf8b-83de-4fdb-bb33-2bc5968b2dbe/03201_morioka-shi_2022_3dtiles_1_op_bldg_lod1/tileset.json',
+  ]
+  for (const url of urls_of_3d_tiles){
+    my_3d_tiles.push(viewer.scene.primitives.add(await Cesium.Cesium3DTileset.fromUrl(url)))
+  }
+
+  // カメラの初期位置を先頭のもの（千代田区）に設定
+  viewer.flyTo(my_3d_tiles[0])
 
 }());
