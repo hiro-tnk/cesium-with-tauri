@@ -181,6 +181,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }),)
 
+  // Home Viewを東京駅付近に設定
+  var defaultExtent = Cesium.Rectangle.fromDegrees(139.75, 35.67, 139.76, 35.68);
+  Cesium.Camera.DEFAULT_VIEW_RECTANGLE = defaultExtent;
+  Cesium.Camera.DEFAULT_VIEW_FACTOR = 1;
+
   var _viewer = new Cesium.Viewer("cesium", {
     imageryProviderViewModels: imageryViewModels,
     terrainProviderViewModels: [],
